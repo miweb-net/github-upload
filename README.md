@@ -16,6 +16,8 @@ Reverted the replacement of spaces in hymn titles with underscore symbols. The s
 
 Client.py deleteFile moved logging into the 'try' clause to effectively make delete work and log properly.
 
+Updated organizer.html documentation to include Refresh functionality.
+
 1.2.4 No code changes. This is the first zipped version.
 
 1.2.3 Logging added to webmc.py to show version and date of application, and the browser command so we know what browser is being used.

@@ -1,0 +1,51 @@
+This file documents the process for building the MIMC application installer.
+
+The first step is to ensure you have a working Windows installation with the
+current versions of all source files (CSS, HTML, JAVASCRIPT, PYTHON), which
+**MATCH THE FILES IN THE SUBFOLDERS OF THIS ROOT FOLDER**, along
+with public domain databases ("Cantes Espirtuales Publica.db3" and
+"English Public Domain Hymns.db3").
+
+Prior to zipping the Windows installation, perform these steps on the folders
+in the prospective Windows root source (Miweb).
+
+    Clean out the cache/.organizer.txt file (it should be an empty file).
+
+    Delete all contents/files/folders in data folders:
+        presentations/hymn
+        presentations/scripture
+        presentations/other
+        tmp
+
+    Update the documentation in the doc folder, adding any images to the
+    doc/image folder that the html documentation references.
+
+Then zip the Miweb folder to miweb.zip and move it to *THIS* (build) folder.
+
+Run "python3 split.py miweb.zip". This will create about 5 files in the ../installer
+folder (miweb.zip.00, miweb.zip.01, miweb.zip.02...).
+
+Examine the ../installer/install.js file to make sure that all of the split file
+names (and no extra files) are downloaded via the script. Edit and adjust as
+necessary.
+
+Move the split files, but not the original zip file (miweb.zip) to ../installer.
+From the command line (in the build folder), type:
+
+    mv miweb.zip.0* ../installer.
+
+Create a branch on the distribution site to hold the new version files. Give it a
+meaningful name and take note/copy it, because it will be used during the upload.
+
+Edit the README.md file located in the root folder (../ from build). Add sufficient
+explanation as to the changes that distinguish this branch.
+
+Change directories to the root folder (../ from build) and then execute the
+following commands to place files into the new branch.
+
+git init
+git add README.md
+git commit -m ""            ## Enter a title for the commit
+git branch -M <name>        ## Enter the branch name to commit to.
+git remote add origin https://github.com/miweb-net/github-upload.git
+git push -u origin <name>   ## Enter the branch name to push files to.
